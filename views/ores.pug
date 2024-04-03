@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  - let ores = [{ ore_name: 'Iron Ore', quality_level: 'High Grade', quantity_available: 1000 },{ ore_name: 'Gold Ore', quality_level: 'Pure', quantity_available: 50 },{ ore_name: 'Silver Ore', quality_level: 'Standard', quantity_available: 2000 }]
+  - let ores = results
   .container-fluid
     .row
       each ore, index in ores

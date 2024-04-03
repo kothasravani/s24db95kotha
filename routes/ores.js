@@ -7,3 +7,10 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+var express = require('express');
+const ores_controlers= require('../controllers/ores');
+var router = express.Router();
+/* GET ores */
+router.get('/', ores_controlers.ores_view_all_Page );
+module.exports = router;
