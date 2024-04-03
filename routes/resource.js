@@ -16,5 +16,5 @@ router.put('/ores/:id', ores_controller.ores_update_put);
 // GET request for one ores.
 router.get('/ores/:id', ores_controller.ores_detail);
 // GET request for list of all ores items.
-router.get('/ores', ores_controller.cores_list);
+router.get('/ores', ores_controller.ores_list);
 module.exports = router;

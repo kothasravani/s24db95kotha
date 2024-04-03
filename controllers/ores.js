@@ -1,6 +1,6 @@
 var ores = require('../models/ores');
 // List of all ores
-exports.cores_list = function(req, res) {
+exports.ores_list = function(req, res) {
 res.send('NOT IMPLEMENTED: ores list');
 };
 // for a specific ores.
@@ -19,3 +19,16 @@ res.send('NOT IMPLEMENTED: ores delete DELETE ' + req.params.id);
 exports.ores_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: ores update PUT' + req.params.id);
 };
+
+// List of all ores
+exports.ores_list = async function(req, res) {
+    try{
+    theores = await ores.find();
+    res.send(theores);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
