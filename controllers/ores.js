@@ -52,7 +52,7 @@ exports.ores_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"ores_type":"goat", "cost":12, "size":"large"}
+    // {"ores_type":"goat", "quality_level":12, "quantity_available":"large"}
     document.ore_name = req.body.ore_name;
     document.quality_level = req.body.quality_level;
     document.quantity_available = req.body.quantity_available;
@@ -65,4 +65,37 @@ exports.ores_create_post = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
+    
+    // for a specific ores.
+exports.ores_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await ores.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+
+// Handle ores update form on PUT.
+exports.ores_update_put = async function(req, res) {
+console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+try {
+let toUpdate = await ores.findById( req.params.id)
+// Do updates of properties
+if(req.body.ore_name)
+toUpdate.ore_name = req.body.ore_name;
+if(req.body.quality_level) toUpdate.quality_level = req.body.quality_level;
+if(req.body.quantity_available) toUpdate.quantity_available = req.body.quantity_available;
+let result = await toUpdate.save();
+console.log("Sucess " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+}
+};
     
