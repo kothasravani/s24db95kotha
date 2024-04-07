@@ -99,3 +99,16 @@ failed`);
 }
 };
     
+// Handle ores delete on DELETE.
+exports.ores_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await ores.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
