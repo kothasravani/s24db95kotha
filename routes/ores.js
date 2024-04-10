@@ -13,6 +13,8 @@ const ores_controlers= require('../controllers/ores');
 var router = express.Router();
 /* GET ores */
 router.get('/', ores_controlers.ores_view_all_Page );
-/* GET detail costume page */
+/* GET detail ores page */
 router.get('/detail', ores_controlers.ores_view_one_Page);
+/* GET create ores page */
+router.get('/create', ores_controlers.ores_create_Page);
 module.exports = router;
