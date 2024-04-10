@@ -1,0 +1,55 @@
+extends layout
+ 
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let oresid = toShow._id
+    - let ore_name = toShow.ore_name
+    - let quality_level = toShow.quality_level
+    - let quantity_available = toShow.quantity_available
+    - let actionid = "/resource/ores/" + oresid
+ 
+    script.
+      let actionid = "#{actionid}"
+   
+    div(style = " background-color: aquamarine; width: 200px; padding: 5px")
+      div.row
+        div(class='oresAttr mr-3') ores ID is:
+        div #{oresid}
+      div.row
+        div(class='oresAttr mr-3') ore name is:
+        div #{ore_name}
+      div.row
+        div(class='oresAttr mr-3') ores quantity_available is:
+        div #{quantity_available}
+      div.row
+        div(class='oresAttr mr-3') ores quality_level is:
+        div #{quality_level}
+   
+    button(class="btn btn-danger m-2", onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2", onclick="cancel()") Cancel
+ 
+    script.
+      function cancel() {
+        // Go back to the home page for the ores collection
+        window.location.href='/ores'
+      }
+    script.
+      function deleteOnid() {
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeeded")
+          window.location.href='/ores'
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error )
+        });
+      }
