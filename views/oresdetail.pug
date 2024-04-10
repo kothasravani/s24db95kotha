@@ -1,0 +1,19 @@
+block content
+  h1= title  
+  - let oreid = toShow._id  // Access data using 'toShow'
+  - let ore_name = toShow.ore_name
+  - let quality_level = toShow.quality_level
+  - let quantity_available = toShow.quantity_available
+  div(style="background-color: aquamarine; width: 200px;")
+    div.row
+      div(class='oresAttr mr-3') ores ID is:
+        div #{oreid}
+    div.row
+      div(class='oresAttr mr-3') ores ore_name is:
+        div #{ore_name}
+    div.row
+      div(class='oresAttr mr-3') ores quality_level is:
+      div #{quality_level}
+    div.row
+      div(class='oresAttr mr-3') ores quantity_available is:
+      div #{quantity_available}

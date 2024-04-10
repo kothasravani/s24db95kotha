@@ -112,3 +112,15 @@ exports.ores_delete = async function(req, res) {
     }
     };
     
+    // Handle a show one view with id specified by query
+exports.ores_view_one_Page = async function(req, res) {
+console.log("single view for id " + req.query.id)
+try{
+    result = await ores.findById( req.query.id)
+    res.render('oresdetail', { title: 'ore Details', toShow: result }); // Pass 'result' as 'toShow'
+  }
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
