@@ -1,13 +1,24 @@
+h1 {
+  color: brown;
+  padding: 5%;
+  padding-bottom: 0%;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 4px; 
+  font: 14px cursive; 
 }
 
 a {
-  color: #00B7FF;
+  color: #f8eda9;
 }
 
 .oresAttr {
-  background-color: aquamarine;
-  width: 120px;
+  background-color: burlywood; 
+  font-family: cursive;
+  width: 150px; 
+  border: 1px solid rgb(37, 35, 0); 
+  margin: 2%;
+  color: black; 
+  font-weight: bold; 
 }

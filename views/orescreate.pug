@@ -12,7 +12,7 @@ block content
     div.form-group
       label.oresAttr(for='quantity_available') quantity_available
       input#quantity_available(type='number', name='quantity_available')
-    input(type="submit")
+    input.oresAttr(style =" padding-left: 4px; margin-left:10%", type="submit")
     script.
       document.forms['oresForm'].addEventListener('submit', (event) => {
         event.preventDefault();
