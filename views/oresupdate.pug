@@ -1,0 +1,39 @@
+extends layout
+block content
+  h1= title
+  - let oreid = toShow._id
+  - let ore_name = toShow.ore_name
+  - let quality_level = toShow.quality_level
+  - let quantity_available = toShow.quantity_available
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{oreid}
+  - let actionid = "/resource/ores/" + oreid
+  form(id='oresForm', action= actionid, method="PUT")
+    div.form-group
+      label.oresAttr(for='ore_name') ore name
+      input#ore_name(type='text', name='ore_name', value= ore_name )
+    div.form-group
+      label.oresAttr(for='quality_level') quality_level
+      input#quality_level(type='text', name='quality_level', value= quality_level )
+    div.form-group
+      label.oresAttr(for='quantity_available') quantity_available
+      input#quantity_available(type='number', name='quantity_available', value= quantity_available )
+    input(type="submit")
+  script.
+    document.forms['oresForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.text(); //resp.json();or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded");
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed: " + error);
+      });
+    });

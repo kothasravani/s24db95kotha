@@ -17,4 +17,10 @@ router.get('/', ores_controlers.ores_view_all_Page );
 router.get('/detail', ores_controlers.ores_view_one_Page);
 /* GET create ores page */
 router.get('/create', ores_controlers.ores_create_Page);
+/* GET create update page */
+router.get('/update', ores_controlers.ores_update_Page);
+/* GET delete costume page */
+router.get('/delete', costume_controlers.costume_delete_Page);
+
+
 module.exports = router;
