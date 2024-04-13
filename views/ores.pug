@@ -12,18 +12,12 @@ block content
     .container-fluid
       .row
         each ore, index in ores
-          .col-sm
+          .col-sm-4
             .ore(onclick=`buy('${index}')`)
-              h1 #{ore.ore_name}
-              p Quality Level: #{ore.quality_level}
-              p Quantity Available: #{ore.quantity_available}
-          .col-sm-2
+            h1 #{ore.ore_name}
             p Ore Name: #{ore.ore_name}
             p Quality Level: #{ore.quality_level}
             p Quantity Available: #{ore.quantity_available}
-            button.btn(class="btn-primary ml-1") Update
-            button.btn(class="btn-danger ml-1") Delete
-            button.btn(class="btn-info ml-1") Inspect
   script.
     function dispatch(path){
       window.location.href=path

@@ -1,22 +1,12 @@
 extends layout
 
 block content
-  h1= title 
-  p Welcome to #{title}
-  p Hi I am SravaniKotha
-  br
-  button(type="button", class="btn btn-secondary", onclick="double()") I am a Button
-  br
-  br
-  div#double Up the amount
-  script.
-    let value = 0;
-    let power = 1;
-    function double() {
-      value += 1;
-      power *= 2;
-      document.getElementById('double').innerText = `Two to the power ${value} is ${power}.`;
-    }
-  br
-  br
-  a(href='/ores') Go to Type of Ores
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  else
+    p You are currently logged in as #{user.username}
+    a(href="/ores") Take me to ores
+    br
+    a(href="/logout") Logout
