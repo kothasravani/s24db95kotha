@@ -18,8 +18,8 @@ const secured = (req, res, next) => {
 // GET request for one ores.
 router.get('/ores/:id', ores_controlers.ores_detail);
 
-/* GET create update page */
-router.get('/update', ores_controlers.ores_update_Page);
+// PUT request to update a ores.
+router.put('/ores/:id', ores_controlers.ores_update_put);
 
 /* GET detail ores page */
 router.get('/detail', ores_controlers.ores_view_one_Page);
