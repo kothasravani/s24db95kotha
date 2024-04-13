@@ -111,7 +111,7 @@ ores({ore_name:"Brass", quality_level: "Standard",quantity_available: 1849});
  console.error(err)
  });
  let instance2 = new
- ores({ore_name:"Gold", quality_level: "Good",quantity_available: 1999});
+ ores({ore_name:"Gold", quality_level: "Excellent",quantity_available: 1999});
  instance2.save().then(doc=>{
  console.log("second object saved")}
  ).catch(err=>{

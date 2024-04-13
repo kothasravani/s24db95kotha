@@ -28,10 +28,18 @@ block content
         method: 'PUT',
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form
       }).then((resp) => {
-        return resp.text(); //resp.json();or whatever the server sends
+        if (resp.ok){
+            alert('ore updated successfully')
+            document.getElementById("oreForm").reset()
+        }
+        else{
+            alert("failed to update ore")
+        }
+        //- return resp.text(); //resp.json();or whatever the server sends
       }).then((body) => {
-        alert("Update succeeded");
-        // TODO handle body
+        console.log(body);
+        //- alert("Update succeeded");
+        //- // TODO handle body
       }).catch((error) => {
         // TODO handle error
         alert("Update failed: " + error);

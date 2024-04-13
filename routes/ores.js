@@ -1,25 +1,41 @@
-var express = require('express');
+var express = require("express");
+const ores_controlers = require("../controllers/ores");
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('Ores', { title: 'Search Result Ores' });
-});
-
+const passport = require('passport');
+// GET ores
+router.get("/", ores_controlers.ores_view_all_Page);
 module.exports = router;
 
-var express = require('express');
-const ores_controlers= require('../controllers/ores');
-var router = express.Router();
-/* GET ores */
-router.get('/', ores_controlers.ores_view_all_Page );
-/* GET detail ores page */
-router.get('/detail', ores_controlers.ores_view_one_Page);
-/* GET create ores page */
-router.get('/create', ores_controlers.ores_create_Page);
+// A little function to check if we have an authorized user and continue on 
+// redirect to login.
+const secured = (req, res, next) => {
+    if (req.user){
+    return next();
+    }
+    res.redirect("/login");
+    }
+
+// GET request for one ores.
+router.get('/ores/:id', ores_controlers.ores_detail);
+
 /* GET create update page */
 router.get('/update', ores_controlers.ores_update_Page);
+
+/* GET detail ores page */
+router.get('/detail', ores_controlers.ores_view_one_Page);
+
+/* GET create ores page */
+router.get('/create', ores_controlers.ores_create_Page);
+
 /* GET delete ores page */
 router.get('/delete', ores_controlers.ores_delete_Page);
+ 
+ /* GET update ores page */
+router.get('/update', secured, 
+ores_controlers.ores_update_Page);
+
+router.post('/login', passport.authenticate('local'), function(req, res) {
+    res.redirect('/');
+   });
 
 module.exports = router;
