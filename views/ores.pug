@@ -2,22 +2,27 @@ extends layout
 
 block content
   - let ores = results
+    h1 List of Ores
+  - let destination = `dispatch("/ores/create")`
+  button.btn(class="btn-info" style = "margin-left:8%", onclick=destination) Add new ore
   div(class="container-fluid")
     div(class="row m-1")
-      each item in ores 
-        - let destination = `dispatch("/ores/update?id=${item._id}")`
-        div(class="row-sm-2 m-1") 
-          | Item #{item.ore_name}(#{item.quality_level}) is #{item.quantity_available}
-          button.btn(class="btn-primary ml-1", onclick=destination) Update
+        div(class="row m-1") 
     .container-fluid
       .row
         each ore, index in ores
-          .col-sm-4
+          - let destination = `/ores/update?id=${ore._id}`
+          - let detail = `/ores/detail?id=${ore._id}` // Adjust the route as per your setup
+          - let deleteore = `/ores/delete?id=${ore._id}` // Adjust the route as per your setup
+          .col-sm
             .ore(onclick=`buy('${index}')`)
             h1 #{ore.ore_name}
             p Ore Name: #{ore.ore_name}
             p Quality Level: #{ore.quality_level}
             p Quantity Available: #{ore.quantity_available}
+            button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
+            button.btn(class="btn-success ml-1", onclick=`dispatch('${detail}')`) Details
+            button.btn(class="btn-dark ml-1", onclick=`dispatch('${deleteore}')`) Delete
   script.
     function dispatch(path){
       window.location.href=path
